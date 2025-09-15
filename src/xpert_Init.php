@@ -1,6 +1,13 @@
 <?php
 
-namespace xpert;
+/**
+ * Main plugin initialization class.
+ *
+ * @since 1.0.0
+ * @package XpertElementorAddons
+ */
+
+namespace Xpert;
 
 use xpert\Core\Core_Functionality;
 
@@ -10,14 +17,34 @@ if (!defined('ABSPATH')) {
 
 class xpert_Init
 {
+    /**
+     * Singleton instance.
+     *
+     * @since 1.0.0
+     * @var xpert_Init|null
+     */
+
     private static $instance = null;
+
+    /**
+     * Private constructor to prevent direct instantiation.
+     *
+     * @since 1.0.0
+     */
 
     private function __construct()
     {
         // Private constructor to prevent direct instantiation.
     }
 
-    public static function getInstance()
+    /**
+     * Gets the singleton instance.
+     *
+     * @return xpert_Init
+     * @since 1.0.0
+     */
+
+    public static function get_instance()
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -25,26 +52,48 @@ class xpert_Init
         return self::$instance;
     }
 
+    /**
+     * Initializes the plugin.
+     *
+     * @return void
+     * @since 1.0.0
+     */
     public function init()
     {
+        // Load translations
+        load_plugin_textdomain('xpert-elementor-addons', false, dirname(plugin_basename(XPERT_PLUGIN_FILE)) . '/languages');
+        // Register Elementor widgets
+        add_action('elementor/widgets/register', [$this, 'register_widgets']);
+        //----------------- Add below other initialization tasks (e.g., admin menus, hooks)
+
         // Defer initialization to plugins_loaded hook.
-        add_action('plugins_loaded', [$this, 'initializePlugin']);
+        add_action('init', [$this, 'initialize_Plugin']);
     }
 
-    public function initializePlugin()
+    /**
+     * Registers custom Elementor widgets.
+     *
+     * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
+     * @return void
+     * @since 1.0.0
+     */
+    public function register_widgets($widgets_manager)
     {
-        if (!class_exists('WooCommerce')) {
-            add_action('wp_footer', [$this, 'displayFallbackMessage']);
-        } else {
-            add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendAssets']);
-            add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
-        }
+        // Example: Register a custom widget (create this class separately)
+        // $widgets_manager->register(new \xpert\Widgets\Custom_Widget());
+    }
+
+    public function initialize_Plugin()
+    {
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_FrontendAssets']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_AdminAssets']);
 
         // Test output.
-        //add_action('wp_footer', [$this, 'displayTestMessage']);
+        $this->display_TestMessage();
+
     }
 
-    public function enqueueFrontendAssets()
+    public function enqueue_FrontendAssets()
     {
         // Enqueue frontend CSS and JS.
         wp_enqueue_style(
@@ -62,7 +111,7 @@ class xpert_Init
         );
     }
 
-    public function enqueueAdminAssets()
+    public function enqueue_AdminAssets()
     {
         // Enqueue admin CSS and JS.
         wp_enqueue_style(
@@ -80,14 +129,14 @@ class xpert_Init
         );
     }
 
-    public function displayTestMessage()
+    public function display_TestMessage()
     {
         echo '<div style="color: red; padding: 10px; border: 1px solid red;">xpert Core is active! (Test Message)</div>';
     }
 
-    public function displayFallbackMessage()
+    public function display_FallbackMessage()
     {
-        echo '<div style="color: orange; padding: 10px; border: 1px solid orange;">xpert Core: WooCommerce not found. Please install/activate WooCommerce.</div>';
+        echo '<div style="color: orange; padding: 10px; border: 1px solid orange;">xpert Core: Elementor not found. Please install/activate WooCommerce.</div>';
     }
 
     // Magic methods must be public.

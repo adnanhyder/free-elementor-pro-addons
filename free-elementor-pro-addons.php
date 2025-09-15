@@ -10,23 +10,49 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       xpert
  * Domain Path:       /languages
+ *  @package          xpert/elementor-addons
  */
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-// Load Composer autoloader.
+/**
+ * Loads Composer's autoloader for PSR-4 namespaced classes.
+ *
+ * @since 1.0.0
+ */
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
 
-// Define plugin file constant correctly for plugin context.
-if (!defined('xpert_PLUGIN_FILE')) {
-    define('xpert_PLUGIN_FILE', __FILE__);
+/**
+ * Defines the main plugin file path for internal use.
+ *
+ * @since 1.0.0
+ */
+if (!defined('XPERT_PLUGIN_FILE')) {
+    define('XPERT_PLUGIN_FILE', __FILE__);
 }
 
-// Initialize the plugin using Singleton.
-use xpert\xpert_Init;
+/**
+ * Initializes the plugin if Elementor is active.
+ *
+ * @since 1.0.0
+ */
+use Xpert\xpert_Init;
 
-xpert_Init::getInstance()->init();
+add_action('plugins_loaded', function () {
+    if (did_action('elementor/loaded')) {
+
+        Xpert\xpert_Init::get_instance()->init();
+    } else {
+        add_action('admin_notices', function () {
+            ?>
+            <div class="notice notice-error">
+                <p><?php esc_html_e('Xpert Elementor Addons requires Elementor to be installed and active.', 'xpert-elementor-addons'); ?></p>
+            </div>
+            <?php
+        });
+    }
+});

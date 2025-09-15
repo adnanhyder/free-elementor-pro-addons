@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'adii/xpert-core',
+        'name' => 'adii/elementor-addons',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '785ea6178e78d5dad816f61dea110364728bcee6',
+        'reference' => '9240deab9bad76fcca08a5127368ee9e731d26d9',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'adii/xpert-core' => array(
+        'adii/elementor-addons' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '785ea6178e78d5dad816f61dea110364728bcee6',
+            'reference' => '9240deab9bad76fcca08a5127368ee9e731d26d9',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
