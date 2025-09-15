@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:       xpert Core
+ * Plugin Name:       Free Elementor Pro Addons
  * Plugin URI:        #
- * Description:       Auxiliary plugin for enhancing WooCommerce
+ * Description:       Addons plugin for Elementor
  * Version:           1.0.1
- * Author:           Xpert code
+ * Author:            Xpert code
  * Author URI:        https://
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
