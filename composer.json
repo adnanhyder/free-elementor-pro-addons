@@ -1,19 +1,16 @@
 {
-  "name": "adii/xpert-core",
-  "description": "A WordPress plugin.",
-  "type": "wordpress-plugin",
-  "license": "GPL-2.0-or-later",
-  "require": {
-    "php": ">=7.4"
-  },
-  "autoload": {
-    "psr-4": {
-      "xpert\\": "src/"
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true
-    }
-  }
+    "name": "adii/svsfc-feedback",
+    "description": "simple voting system",
+    "autoload": {
+        "psr-4": {
+            "SVSFC_Feedback\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "adnanhyder",
+            "email": "12345adnan@gmail.com"
+        }
+    ],
+    "require": {}
 }

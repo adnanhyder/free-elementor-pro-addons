@@ -1,27 +1,6 @@
 <?php
 /**
- *  XPFEP_Core.
- *
- * Php version 8.0.0
- *
- * @category Plugin
- * @package  XPFEP-Addons
- * @author   Adnan Hyder Pervez <12345adnan@gmail.com>
- * @license  GNU General Public License v3.0
- * @link     #
- */
-
-namespace XPFEP_Addons;
-
-
-use XPFEP_Addons\Admin\XPFEP_AdminInit;
-use XPFEP_Addons\Front\XPFEP_FrontInit;
-use XPFEP_Widgets\Widgets\XPFEP_Widgets;
-
-defined('ABSPATH') || exit;
-
-/**
- * svsfc-feedback XPFEP_Core class.
+ * svsfc-feedback SVSFC_Core.
  *
  * Php version 8.0.0
  *
@@ -31,14 +10,34 @@ defined('ABSPATH') || exit;
  * @license  GNU General Public License v3.0
  * @link     #
  */
-class XPFEP_Core
+
+namespace SVSFC_Feedback;
+
+
+use SVSFC_Feedback\Admin\SVSFC_AdminInit;
+use SVSFC_Feedback\Front\SVSFC_FrontInit;
+
+defined('ABSPATH') || exit;
+
+/**
+ * svsfc-feedback SVSFC_Core class.
+ *
+ * Php version 8.0.0
+ *
+ * @category Plugin
+ * @package  svsfc-Feedback
+ * @author   Adnan Hyder Pervez <12345adnan@gmail.com>
+ * @license  GNU General Public License v3.0
+ * @link     #
+ */
+class SVSFC_Core
 {
 
     /**
      * The single instance of the class.
      *
      * @since 1.0.0
-     * @var   null|XPFEP_Core The single instance of the class.
+     * @var   null|SVSFC_Core The single instance of the class.
      */
     protected static $instance = null;
 
@@ -94,7 +93,7 @@ class XPFEP_Core
 
         $this->assets_url  = $this->plugin_url . '/assets';
         $this->plugin_path = rtrim(plugin_dir_path(__DIR__), '/\\');
-        $this->plugin_slug = 'xpfep-addons';
+        $this->plugin_slug = 'svsfc-feedback';
 
 
         $this->includes();
@@ -129,9 +128,9 @@ class XPFEP_Core
      * Ensures only one instance of svsfc-feedback is loaded or can be loaded.
      *
      * @since  1.0.0
-     * @return XPFEP_Core Main instance.
+     * @return SVSFC_Core Main instance.
      */
-    public static function instance(): XPFEP_Core
+    public static function instance(): SVSFC_Core
     {
 
         if (is_null(self::$instance) ) {
@@ -183,16 +182,16 @@ class XPFEP_Core
     /**
      * Initializing the FrontInit Class.
      *
-     * @return XPFEP_AdminInit Returns the AdminInit class object.
+     * @return SVSFC_AdminInit Returns the AdminInit class object.
      * @since  1.0.0
      */
-    public function admin_loader(): XPFEP_AdminInit
+    public function admin_loader(): SVSFC_AdminInit
     {
 
         static $svsfc_admin_init;
 
         if (! isset($svsfc_admin_init) ) {
-            $svsfc_admin_init = XPFEP_AdminInit::instance();
+            $svsfc_admin_init = SVSFC_AdminInit::instance();
         }
 
         return $svsfc_admin_init;
@@ -201,16 +200,16 @@ class XPFEP_Core
     /**
      * Initializing the Frontend Class.
      *
-     * @return XPFEP_FrontInit Returns the Frontend class object.
+     * @return SVSFC_FrontInit Returns the Frontend class object.
      * @since  1.0.0
      */
-    public function frontend_loader(): XPFEP_FrontInit
+    public function frontend_loader(): SVSFC_FrontInit
     {
 
         static $svsfc_front_init;
 
         if (! isset($svsfc_front_init) ) {
-            $svsfc_front_init = XPFEP_FrontInit::instance();
+            $svsfc_front_init = SVSFC_FrontInit::instance();
         }
 
         return $svsfc_front_init;
@@ -226,15 +225,15 @@ class XPFEP_Core
     public function frontend_enqueue()
     {
 
-        wp_enqueue_style('xpfep-frontend', trailingslashit($this->get_assets_url()) . 'css/frontend' . self::get_assets_min() . '.css', array(), self::get_assets_version());
-        wp_enqueue_script('xpfep-frontend', trailingslashit($this->get_assets_url()) . 'js/frontend' . self::get_assets_min() . '.js', array( 'jquery' ), self::get_assets_version(), true);
+        wp_enqueue_style('svsfc-frontend', trailingslashit($this->get_assets_url()) . 'css/frontend' . self::get_assets_min() . '.css', array(), self::get_assets_version());
+        wp_enqueue_script('svsfc-frontend', trailingslashit($this->get_assets_url()) . 'js/frontend' . self::get_assets_min() . '.js', array( 'jquery' ), self::get_assets_version(), true);
 
         wp_localize_script(
-            'xpfep-frontend',
-            'xpfep_feedback',
+            'svsfc-frontend',
+            'svsfc_feedback',
             array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
-                'xpfep_nonce' => wp_create_nonce('xpfep_nonce')
+            'ajaxurl' => admin_url('admin-ajax.php'),
+                'svsfc_nonce' => wp_create_nonce('svsfc_nonce')
             )
         );
 
@@ -250,14 +249,14 @@ class XPFEP_Core
     public function enqueue_admin_scripts()
     {
 
-        wp_enqueue_style('xpfep-admin', trailingslashit($this->get_assets_url()) . 'css/admin' . self::get_assets_min() . '.css', array(), self::get_assets_version());
-        wp_enqueue_script('xpfep-admin', trailingslashit($this->get_assets_url()) . 'js/admin' . self::get_assets_min() . '.js', array( 'jquery' ), self::get_assets_version(), true);
+        wp_enqueue_style('svsfc-admin', trailingslashit($this->get_assets_url()) . 'css/admin' . self::get_assets_min() . '.css', array(), self::get_assets_version());
+        wp_enqueue_script('svsfc-admin', trailingslashit($this->get_assets_url()) . 'js/admin' . self::get_assets_min() . '.js', array( 'jquery' ), self::get_assets_version(), true);
 
         wp_localize_script(
-            'xpfep-admin',
-            'xpfep-feedback_admin',
+            'svsfc-admin',
+            'svsfc-feedback_admin',
             array(
-                'ajaxurl' => admin_url('admin-ajax.php'),
+            'ajaxurl' => admin_url('admin-ajax.php'),
             )
         );
 
