@@ -27,7 +27,6 @@ use MDXWPFEPA_Pack\MDXWPFEPA_Core;
 defined( 'ABSPATH' ) || exit;
 
 
-
 if ( ! defined( 'MDXWPFEPA_PLUGIN_FILE' ) ) {
 	define( 'MDXWPFEPA_PLUGIN_FILE', __FILE__ );
 }
@@ -66,23 +65,71 @@ if ( ! function_exists( 'mdxwpfepa_extension_activate' ) ) {
 	/**
 	 * Activation Hook for WordPress.
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function mdxwpfepa_extension_activate() {
 		// Add any Activation tasks here
 		// (e.g., Removal of free version, Create Databases).
+		mdxwpfepa_is_elementor_activated();
 	}
 
 	register_activation_hook( __FILE__, 'mdxwpfepa_extension_activate' );
 }
 
+
+if ( ! function_exists( 'mdxwpfepa_is_elementor_activated' ) ) {
+	/**
+	 * Elementor activated
+	 *
+	 * @return void
+	 * @since  1.0.0
+	 */
+	function mdxwpfepa_is_elementor_activated() {
+		if ( ! class_exists( '\Elementor\Plugin' ) ) {
+			// Set a transient so we can show an admin notice after redirect.
+			set_transient( 'mdxwpfepa_missing_elementor', true );
+			update_option( 'mdxwpfepa_elementor_found', 0 );
+			// Deactivate the plugin right away.
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		} else {
+			// Elementor found and active.
+			update_option( 'mdxwpfepa_elementor_found', 1 );
+		}
+	}
+}
+
+
+
+if ( ! function_exists( 'mdxwpfepa_admin_notice' ) ) {
+	/**
+	 * Deactivation hook for WordPress.
+	 *
+	 * @return void
+	 * @since  1.0.0
+	 */
+	function mdxwpfepa_admin_notice() {
+		if ( get_transient( 'mdxwpfepa_missing_elementor' ) ) {
+			delete_transient( 'mdxwpfepa_missing_elementor' );
+
+			echo '<div class="notice notice-error is-dismissible">';
+			echo '<p>' . esc_html__( 'This plugin requires Elementor to be installed and active.', 'mdxwp' ) . '</p>';
+			echo '</div>';
+		}
+	}
+
+
+	add_action( 'admin_notices', 'mdxwpfepa_admin_notice' );
+
+}
+
+
 if ( ! function_exists( 'mdxwpfepa_extension_deactivate' ) ) {
 	/**
 	 * Deactivation hook for WordPress.
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function mdxwpfepa_extension_deactivate() {
 		// Add any deactivation tasks here (e.g., cleanup, data removal).
@@ -96,20 +143,24 @@ if ( ! function_exists( 'mdxwpfepa_initialize' ) ) {
 	/**
 	 * Initialize the plugin.
 	 *
-	 * @since  1.0.0
 	 * @return MDXWPFEPA_Core Instance of the MDXWPFEPA_Core class.
+	 * @since  1.0.0
 	 */
-	function mdxwpfepa_initialize(): ?MDXWPFEPA_Core {
+	function mdxwpfepa_initialize() {
 
-		static $fc;
+		mdxwpfepa_is_elementor_activated();
 
-		if ( ! isset( $fc ) ) {
-			$fc = MDXWPFEPA_Core::instance();
+		if ( get_option( 'mdxwpfepa_elementor_found' ) ) {
+			static $fc;
+
+			if ( ! isset( $fc ) ) {
+				$fc = MDXWPFEPA_Core::instance();
+			}
+
+			$GLOBALS['mdxwpfepa_feedback'] = $fc;
+
+			return $fc;
 		}
-
-		$GLOBALS['mdxwpfepa_feedback'] = $fc;
-
-		return $fc;
 	}
 
 	add_action( 'plugins_loaded', 'mdxwpfepa_initialize', 10 );

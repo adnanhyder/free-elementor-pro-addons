@@ -53,9 +53,16 @@ class MDXWPFEPA_AdminInit {
 	 * @return void
 	 */
 	public function hooks() {
-		// add_action('add_meta_boxes', array( $this, 'mdxwpfepa_feedback_meta_box' ), 10);.
+		add_action( 'init', array( $this, 'test' ), 10 );
 	}
 
+
+	/**
+	 * @return MDXWPFEPA_AdminInit|null
+	 */
+	public function test() {
+	     //echo "admam000";
+	}
 
 
 	/**
