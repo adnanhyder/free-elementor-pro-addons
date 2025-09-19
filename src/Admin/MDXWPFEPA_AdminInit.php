@@ -12,7 +12,8 @@
 
 namespace MDXWPFEPA_Pack\Admin;
 
-use MDXWPFEPA_Pack\Front\MDXWPFEPA_FrontInit;
+use MDXWPFEPA_Pack\Admin\Widgets\MDXWPFEPA_Card;
+
 
 defined( 'ABSPATH' ) || exit;
 
@@ -53,16 +54,14 @@ class MDXWPFEPA_AdminInit {
 	 * @return void
 	 */
 	public function hooks() {
-		add_action( 'init', array( $this, 'test' ), 10 );
+
+		add_action( 'elementor/widgets/register', array( $this, 'mdxwpfepa_register_widgets' ) );
 	}
 
-
-	/**
-	 * @return MDXWPFEPA_AdminInit|null
-	 */
-	public function test() {
-	     //echo "admam000";
+	function mdxwpfepa_register_widgets( $widgets_manager ) {
+		$widgets_manager->register( MDXWPFEPA_Card::instance() );
 	}
+
 
 
 	/**
