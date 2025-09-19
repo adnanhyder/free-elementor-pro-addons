@@ -1,9 +1,9 @@
 {
-    "name": "adii/svsfc-feedback",
-    "description": "simple voting system",
+    "name": "adii/mdxwp",
+    "description": "Free Elementor addon",
     "autoload": {
         "psr-4": {
-            "SVSFC_Feedback\\": "src/"
+            "MDXWPFEPA_Pack\\": "src/"
         }
     },
     "authors": [

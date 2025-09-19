@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'SVSFC_Feedback\\' => array($baseDir . '/src'),
+    'MDXWPFEPA_Pack\\' => array($baseDir . '/src'),
 );

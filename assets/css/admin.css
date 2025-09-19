@@ -1,4 +1,4 @@
-.svsfc-chart {
+.mdxwpfepa-chart {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -7,7 +7,7 @@
     background: #d6d5d5cf;
 }
 
-.svsfc-bar {
+.mdxwpfepa-bar {
     width: 200px;
     background-color: #007bff;
     text-align: center;
@@ -15,7 +15,7 @@
     margin-bottom: 0px;
 }
 
-.svsfc-label {
+.mdxwpfepa-label {
     font-size: 12px;
     font-weight: bold;
 }

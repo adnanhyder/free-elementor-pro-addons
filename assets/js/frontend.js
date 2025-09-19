@@ -1,33 +1,33 @@
 (function ($) {
 	'use strict';
-	$('.svsfc-vote').on('click', function() {
-		$('.svsfc-loading-line').removeClass('svsfc-hide');
+	$('.mdxwpfepa-vote').on('click', function() {
+		$('.mdxwpfepa-loading-line').removeClass('mdxwpfepa-hide');
 		var btn = $(this);
-		btn.addClass('svsfc-active');
-		var fcFrom = $('.svsfc-feedback-form');
+		btn.addClass('mdxwpfepa-active');
+		var fcFrom = $('.mdxwp-form');
 		var voteType = btn.data('vote-type');
 		var postId = btn.data('post-id')
 		$.ajax({
 			type: 'POST',
-			url: svsfc_feedback.ajaxurl,
+			url: mdxwpfepa_feedback.ajaxurl,
 			data: {
-				action: 'svsfc_submit_vote',
+				action: 'mdxwpfepa_submit_vote',
 				vote_type: voteType,
 				post_id: postId,
-				security: svsfc_feedback.svsfc_nonce,
+				security: mdxwpfepa_feedback.mdxwpfepa_nonce,
 			},
 			success: function(response) {
-				$('.svsfc-loading-line').remove();
-				fcFrom.find('.svsfc-hide').removeClass('svsfc-hide');
-				fcFrom.find('.svsfc-vote').off('click'); //removing multiple votes and ajax calls
-				fcFrom.find('.svsfc-vote').removeClass('svsfc-vote');
+				$('.mdxwpfepa-loading-line').remove();
+				fcFrom.find('.mdxwpfepa-hide').removeClass('mdxwpfepa-hide');
+				fcFrom.find('.mdxwpfepa-vote').off('click'); //removing multiple votes and ajax calls
+				fcFrom.find('.mdxwpfepa-vote').removeClass('mdxwpfepa-vote');
 				if(response.data.result === 1){
-					$('#svsfc-yes').text(response.data.yes);
-					$('#svsfc-no').text(response.data.no);
+					$('#mdxwpfepa-yes').text(response.data.yes);
+					$('#mdxwpfepa-no').text(response.data.no);
 					if(response.data.user_answer === 1){
-						$('.svsfc-answer-yes').addClass('svsfc-active');
+						$('.mdxwpfepa-answer-yes').addClass('mdxwpfepa-active');
 					}else{
-						$('.svsfc-answer-no').addClass('svsfc-active');
+						$('.mdxwpfepa-answer-no').addClass('mdxwpfepa-active');
 					}
 
 				};
