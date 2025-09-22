@@ -27,13 +27,13 @@ defined( 'ABSPATH' ) || exit;
  * @license  GNU General Public License v3.0
  * @link     #
  */
-class MDXWPFEPA_AdminInit {
 
+class MDXWPFEPA_AdminInit {
 
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var   MDXWPFEPA_AdminInit|null $instance.
+	 * @var   MDXWPFEPA_AdminInit|null $instance .
 	 * @since 1.0.0
 	 */
 	protected static $instance = null;
@@ -50,18 +50,43 @@ class MDXWPFEPA_AdminInit {
 	/**
 	 * Hooks Loaded.
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	public function hooks() {
 
+
+		//to add widget category
+		add_action( 'elementor/elements/categories_registered',  array( $this, 'mdxwpfepa_add_widget_categories' ) );
+
+
 		add_action( 'elementor/widgets/register', array( $this, 'mdxwpfepa_register_widgets' ) );
+
+
 	}
 
 	function mdxwpfepa_register_widgets( $widgets_manager ) {
 		$widgets_manager->register( MDXWPFEPA_Card::instance() );
 	}
 
+	/**
+	 * register new category for elementor widgets .
+	 * Ensures only one instance of the class is loaded or can be loaded.
+	 *
+
+	 * @since  1.0.0
+	 */
+	function mdxwpfepa_add_widget_categories( $elements_manager ) {
+
+		$elements_manager->add_category(
+			'mdxwpfepa-pack',
+			[
+				'title' => esc_html__( 'Free Addons Pro Addons', 'textdomain' ),
+				'icon' => 'fa fa-plug',
+			]
+		);
+
+	}
 
 
 	/**
@@ -83,9 +108,9 @@ class MDXWPFEPA_AdminInit {
 	/**
 	 * Cloning is forbidden.
 	 *
+	 * @return void
 	 * @since 1.0.0
 	 *
-	 * @return void
 	 */
 	public function __clone() {
 		// Override this PHP function to prevent unwanted copies of your instance.
@@ -95,9 +120,9 @@ class MDXWPFEPA_AdminInit {
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
+	 * @return void
 	 * @since 1.0.0
 	 *
-	 * @return void
 	 */
 	public function __wakeup() {
 		// Override this PHP function to prevent unwanted copies of your instance.

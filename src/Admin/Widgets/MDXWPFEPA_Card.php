@@ -1,4 +1,5 @@
 <?php
+
 namespace MDXWPFEPA_Pack\Admin\Widgets;
 
 use Elementor\Widget_HTML;
@@ -11,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class MDXWPFEPA_Card extends Widget_HTML {
 
 	protected static $instance = null;
-
 
 	public function __construct() {
 		parent::__construct(); // Calls protected constructor of parent
@@ -26,21 +26,28 @@ class MDXWPFEPA_Card extends Widget_HTML {
 		return self::$instance;
 	}
 
-
 	public function get_name() {
-		return 'mdxwpfepa';
+		return 'mdxwpfepa_profile_card';
 	}
 
 	public function get_title() {
-		return __( 'Free Addon', 'mdxwp' );
+		return __( 'Free Addon Profile Card ', 'mdxwp' );
 	}
 
 	public function get_icon() {
-		return 'eicon-code';
+		return 'eicon-icon-box';
 	}
 
 	public function get_categories() {
-		return array( 'basic' );
+		return array( 'mdxwpfepa-pack' );
+	}
+
+	public function get_keywords(): array {
+		return array( 'Free Addon', 'Free Addon' );
+	}
+
+	public function get_custom_help_url(): string {
+		return 'https://example.com/widget-name';
 	}
 
 	protected function register_controls() {
@@ -78,14 +85,12 @@ class MDXWPFEPA_Card extends Widget_HTML {
 		}
 	}
 
-
-
 	/**
 	 * Cloning is forbidden.
 	 *
+	 * @return void
 	 * @since 1.0.0
 	 *
-	 * @return void
 	 */
 	public function __clone() {
 		// Override this PHP function to prevent unwanted copies of your instance.
@@ -95,9 +100,9 @@ class MDXWPFEPA_Card extends Widget_HTML {
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
+	 * @return void
 	 * @since 1.0.0
 	 *
-	 * @return void
 	 */
 	public function __wakeup() {
 		// Override this PHP function to prevent unwanted copies of your instance.
