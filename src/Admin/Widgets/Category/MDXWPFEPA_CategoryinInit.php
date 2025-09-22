@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Init.
+ * Category Init.
  * Php version 8.0.0
  *
  * @category Plugin
@@ -10,12 +10,7 @@
  * @link     #
  */
 
-namespace MDXWPFEPA_Pack\Admin;
-
-use MDXWPFEPA_Pack\Admin\Widgets\Category\MDXWPFEPA_CategoryinInit;
-use MDXWPFEPA_Pack\Admin\Widgets\MDXWPFEPA_Card;
-use MDXWPFEPA_Pack\Admin\Widgets\MDXWPFEPA_Cardtwo;
-
+namespace MDXWPFEPA_Pack\Admin\Widgets\Category;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -30,12 +25,12 @@ defined( 'ABSPATH' ) || exit;
  * @link     #
  */
 
-class MDXWPFEPA_AdminInit {
+class MDXWPFEPA_CategoryinInit {
 
 	/**
 	 * The single instance of the class.
 	 *
-	 * @var   MDXWPFEPA_AdminInit|null $instance .
+	 * @var   MDXWPFEPA_CategoryinInit|null $instance .
 	 * @since 1.0.0
 	 */
 	protected static $instance = null;
@@ -56,17 +51,26 @@ class MDXWPFEPA_AdminInit {
 	 * @since  1.0.0
 	 */
 	public function hooks() {
-		$this->register_category();
-		add_action( 'elementor/widgets/register', array( $this, 'mdxwpfepa_register_widgets' ) );
+
+		// to add widget category.
+		add_action( 'elementor/elements/categories_registered', array( $this, 'mdxwpfepa_add_widget_categories' ) );
 	}
 
 
-	public function register_category() {
-		MDXWPFEPA_CategoryinInit::instance();
-	}
-
-	function mdxwpfepa_register_widgets( $widgets_manager ) {
-		$widgets_manager->register( MDXWPFEPA_Card::instance() );
+	/**
+	 * register new category for elementor widgets .
+	 * Ensures only one instance of the class is loaded or can be loaded.
+	 *
+	 * @since  1.0.0
+	 */
+	public function mdxwpfepa_add_widget_categories( $elements_manager ) {
+		$elements_manager->add_category(
+			'mdxwpfepa-pack',
+			array(
+				'title' => esc_html__( 'Free Addons Pro Addons', 'mdxwp' ),
+				'icon'  => 'fa fa-plug',
+			)
+		);
 
 	}
 
@@ -75,10 +79,10 @@ class MDXWPFEPA_AdminInit {
 	 * AdminInit Instance.
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @return MDXWPFEPA_AdminInit instance.
+	 * @return MDXWPFEPA_CategoryinInit instance.
 	 * @since  1.0.0
 	 */
-	public static function instance(): MDXWPFEPA_AdminInit {
+	public static function instance(): MDXWPFEPA_CategoryinInit {
 
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();

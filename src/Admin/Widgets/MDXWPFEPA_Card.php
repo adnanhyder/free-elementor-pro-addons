@@ -3,7 +3,7 @@
 namespace MDXWPFEPA_Pack\Admin\Widgets;
 
 use Elementor\Widget_HTML;
-use Elementor\Controls_Manager;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access
@@ -15,6 +15,7 @@ class MDXWPFEPA_Card extends Widget_HTML {
 
 	public function __construct() {
 		parent::__construct(); // Calls protected constructor of parent
+
 	}
 
 	public static function instance(): MDXWPFEPA_Card {
@@ -26,12 +27,20 @@ class MDXWPFEPA_Card extends Widget_HTML {
 		return self::$instance;
 	}
 
-	public function get_name() {
+    /**
+     * Hooks Loaded.
+     *
+     * @return void
+     * @since  1.0.0
+     */
+
+
+    public function get_name() {
 		return 'mdxwpfepa_profile_card';
 	}
 
 	public function get_title() {
-		return __( 'Free Addon Profile Card ', 'mdxwp' );
+		return __( 'Free Addon Profile Card test ', 'mdxwp' );
 	}
 
 	public function get_icon() {
@@ -39,7 +48,7 @@ class MDXWPFEPA_Card extends Widget_HTML {
 	}
 
 	public function get_categories() {
-		return array( 'mdxwpfepa-pack' );
+		return array( 'mdxwpfepa-pack2' );
 	}
 
 	public function get_keywords(): array {
