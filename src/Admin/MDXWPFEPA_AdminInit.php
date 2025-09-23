@@ -16,7 +16,6 @@ use MDXWPFEPA_Pack\Admin\Widgets\Category\MDXWPFEPA_CategoryinInit;
 use MDXWPFEPA_Pack\Admin\Widgets\MDXWPFEPA_Card;
 use MDXWPFEPA_Pack\Admin\Widgets\MDXWPFEPA_Cardtwo;
 
-
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -29,7 +28,6 @@ defined( 'ABSPATH' ) || exit;
  * @license  GNU General Public License v3.0
  * @link     #
  */
-
 class MDXWPFEPA_AdminInit {
 
 	/**
@@ -60,7 +58,6 @@ class MDXWPFEPA_AdminInit {
 		add_action( 'elementor/widgets/register', array( $this, 'mdxwpfepa_register_widgets' ) );
 	}
 
-
 	public function register_category() {
 		MDXWPFEPA_CategoryinInit::instance();
 	}
@@ -69,7 +66,6 @@ class MDXWPFEPA_AdminInit {
 		$widgets_manager->register( MDXWPFEPA_Card::instance() );
 
 	}
-
 
 	/**
 	 * AdminInit Instance.
