@@ -1,0 +1,86 @@
+/*profile card widget css*/
+
+.custom-widget {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.custom-widget-title {
+    margin-bottom: 10px;
+}
+
+.custom-widget-description {
+    margin: 0;
+}
+/* Start Profile Card 1 CSS */
+.profile-card-style-1 .team-member {
+    box-shadow: 0 10px 50px rgba(4,75,194,0.2);
+    border: none;
+}
+.profile-card-style-1 .team-member {
+    border-radius: 30px 30px 0 30px;
+    transition: all 0.35s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    overflow: hidden;
+    position: relative;
+}
+.profile-card-style-1 .team-member-profile {
+    padding: 0;
+}
+.profile-card-style-1 .team-member-profile img {
+    border-radius: 5px 5px 0 0;
+}
+.profile-card-style-1 .team-member-info {
+    text-align: center;
+    padding: 30px;
+}
+.profile-card-style-1 .profile-description {
+    text-align: center;
+    font-size: 14px;
+}
+.profile-card-style-1 .profile-name {
+    margin: 0;
+}
+.profile-card-style-1 .team-member-info {
+    text-align: center;
+    background: #FF337F;
+}
+.profile-card-style-1 .team-member__socialmedia {
+    position: absolute;
+    top: 40px;
+    right: 3%;
+    background: #FF337F;
+    padding: 5px 20px;
+    border-radius: 24px 24px 0 24px;
+    box-shadow: 0 6px 21px rgba(2,2,2,0.3);
+    transition: all .25s ease-in-out;
+}
+.profile-card-style-1 .team-member__socialmedia {
+    margin: 0;
+    display: flex;
+}
+.profile-card-style-1 .team-member-profile img {
+    width: 100%;
+    display: block;
+}
+.profile-card-style-1 .team-member__socialmedia a i {
+    color: #fff;
+    font-size: 20px;
+    padding: 0 8px;
+}
+.profile-card-style-1 .team-member__socialmedia .elementor-social-icon {
+    background-color: transparent;
+    display: flex;
+}
+.profile-card-style-1  .team-member:hover .team-member__socialmedia {
+    right: 0;
+}
+.profile-card-style-1 .team-member:hover {
+    box-shadow: 0 20px 60px rgba(4,75,194,0.2);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.profile-card-style-1 .team-member:hover {
+    transform: translate3d(0, -20px, 0);
+}
+/* End Profile Card 1 CSS */
