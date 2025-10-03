@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a95404e-6287-4d3c-a3af-421c65b0f47c" name="Changes" comment="new code after change" />
+    <list default="true" id="6a95404e-6287-4d3c-a3af-421c65b0f47c" name="Changes" comment="new code after change">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procedurel-code/profile-cards-addon/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/procedurel-code/profile-cards-addon/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procedurel-code/profile-cards-addon/widgets/profile-cards.php" beforeDir="false" afterPath="$PROJECT_DIR$/procedurel-code/profile-cards-addon/widgets/profile-cards.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +60,7 @@
       <workItem from="1757689805704" duration="378000" />
       <workItem from="1757690837768" duration="1063000" />
       <workItem from="1757923440761" duration="31735000" />
+      <workItem from="1759486378614" duration="1772000" />
     </task>
     <task id="LOCAL-00001" summary="first commit adding base files">
       <created>1757691145364</created>
